@@ -1,0 +1,30 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ToDo App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% tailwind_css %}
+</head>
+
+<body class="min-h-screen font-sans">
+	<div class="min-h-screen p-8 bg-yellow-100">
+		<h1 class="mt-8 text-5xl font-bold text-center text-yellow-600">ToDo App (Django + Tailwind)</h1>
+
+		<div id="content" class="container m-auto mt-8 p">
+
+			{% block content %}{% endblock %}
+
+		</div>
+	</div>
+	<script>
+		function mark(id) {
+			console.log("mark")
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <form class="max-w-lg px-4 py-3 mx-auto mb-3 font-medium bg-white rounded-md shadow-md" action="add/" method="post">
+        <label><sup class="text-red-500">*</sup>Title</label>
+        <input name="title" class="block w-full bg-gray-200 rounded-md" type="text">
+        <label class="mt-3">Description</label>
+        <textarea name="description" class="block w-full bg-gray-200 rounded-md"></textarea>
+        <input
+            class="block w-full px-6 py-2 mt-3 font-bold text-center text-white bg-yellow-500 rounded cursor-pointer hover:bg-yellow-800"
+            type="submit" value="Add">
+    </form>
+    {% if todos %}
+    <ul class="space-y-3">
+        {% for todo in todos %}
+        <li>
+            <form action="delete_todo/{{todo.id}}">
+                <div class="relative max-w-lg px-4 py-3 mx-auto font-medium bg-white rounded-md shadow-md">
+                    {% if  todo.is_done %}
+                    <input class="rounded-sm" type="checkbox" onchange="location.href='mark_todo/{{todo.id}}';" checked>
+                    {% else %}
+                    <input class="rounded-sm" type="checkbox" onchange="location.href='mark_todo/{{todo.id}}';">
+                    {% endif %}
+                    <label class="ml-2">{{ todo.title }}</label>
+
+                    <input class="absolute px-2 rounded right-4 hover:bg-red-300" type="submit" value="x">
+                    <div class="text-sm font-normal ml-7">
+                        {{todo.description}}
+                    </div>
+                </div>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No todos are available.</p>
+    {% endif %}
+
+</div>
+{% endblock %}
